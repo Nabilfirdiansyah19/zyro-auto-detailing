@@ -1,14 +1,66 @@
-
 @import "tailwindcss";
 
 @theme {
   --color-magenta-300: #FF9AD9;
+
+  --font-horizon: 'Horizon', sans-serif;
+  --font-horizon-outline: 'Horizon Outline', sans-serif;
+  --font-garet: 'Garet', sans-serif;
+  --font-signature: 'Have Heart Two', cursive;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Horizon';
+    src: url('./assets/fonts/Horizon.woff2') format('woff2'),
+      url('./assets/fonts/Horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Horizon Outline';
+    src: url('./assets/fonts/Horizon_Outlined.woff2') format('woff2'),
+      url('./assets/fonts/Horizon_Outlined.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Garet';
+    src: url('./assets/fonts/Garet-Book.woff2') format('woff2'),
+      url('./assets/fonts/Garet-Book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Garet';
+    src: url('./assets/fonts/Garet-Heavy.woff2') format('woff2'),
+      url('./assets/fonts/Garet-Heavy.otf') format('opentype');
+    font-weight: 800;
+    /* Atau 900 / bold */
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Have Heart Two';
+    src: url('./assets/fonts/have-heart-two.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 }
 
 /* Animasi Halus untuk Semua Eleman */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
 :root {
   --bg-color: #000000;
 }
@@ -16,7 +68,8 @@
 body {
   background-color: var(--bg-color);
   color: #1e293b;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-garet);
+  /* Fallback default menggunakan Garet */
   overflow-x: hidden;
 }
 

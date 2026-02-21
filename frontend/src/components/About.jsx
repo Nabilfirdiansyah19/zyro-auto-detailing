@@ -7,7 +7,7 @@ const About = () => {
 
   const stats = [
     { label: "Cars Perfected", val: "500+" },
-    { label: "PPF Installed", val: "12k sqft" },
+    { label: "PPF Installed", val: "12k+" },
     { label: "Detailing Hours", val: "8000+" }
   ];
 
@@ -35,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="bg-[#000000] py-20 md:py-32 overflow-hidden relative">
+    <section id="about-us-1" className="bg-[#000000] py-20 md:py-32 overflow-hidden relative">
       <div className="container mx-auto px-6">
 
         {/* Header Section (Simetris dengan desain sebelumnya) */}
@@ -46,10 +46,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center md:text-left"
           >
-            <span className="text-magenta-300 font-black tracking-[0.4em] text-[9px] md:text-[10px] uppercase mb-4 block italic">The Science of Shine</span>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white italic uppercase leading-[0.9] md:leading-[0.85] mb-8 tracking-tighter">
-              EXPERTS TO PROTECT, <br />
-              <span className="text-magenta-300">PERFECT,</span> AND IMPRESS.
+            <span className="text-magenta-300 font-signature tracking-[0.2em] text-xl md:text-2xl mb-4 block">Our Tagline</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-horizon text-white uppercase leading-[0.9] md:leading-[0.85] mb-8">
+              SHINE <br />
+              <span className="text-magenta-300 font-horizon-outline stroke-text">AS</span> YOU LIKE
             </h2>
           </motion.div>
         </div>
@@ -84,7 +84,7 @@ const About = () => {
                 <motion.div
                   animate={{
                     rotate: hoveredIndex === index ? 0 : -90,
-                    y: hoveredIndex === index ? 0 : -30 // Geser sedikit ke atas saat vertikal agar tidak mentok bawah
+                    y: hoveredIndex === index ? 0 : -20 // Sesuaikan nilai offset y agar posisinya pas di tengah saat terlipat
                   }}
                   transition={{ duration: 0.5, ease: "circOut" }}
                   className="origin-left whitespace-nowrap"
@@ -92,14 +92,14 @@ const About = () => {
                   {/* Badge Tag - Hanya muncul/terlihat jelas saat horizontal/hover */}
                   <motion.div
                     animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                    className="bg-magenta-300 text-white text-[7px] md:text-[9px] font-black uppercase italic px-2 py-1 md:px-3 md:py-1 rounded-full mb-3 md:mb-4 w-fit"
+                    className="bg-magenta-300 text-white font-garet text-[8px] md:text-[10px] font-black uppercase px-3 py-1 md:py-1.5 rounded-full mb-3 md:mb-4 w-fit shadow-md tracking-wider"
                   >
                     {item.tag}
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className={`text-white font-black uppercase italic leading-none tracking-tighter transition-all duration-500
-          ${hoveredIndex === index ? 'text-xl md:text-4xl' : 'text-lg md:text-xl opacity-70'}
+                  <h3 className={`text-white font-horizon uppercase leading-none transition-all duration-500
+          ${hoveredIndex === index ? 'text-xl md:text-2xl' : 'text-[15px] md:text-lg opacity-80'}
         `}>
                     {item.title}
                   </h3>
@@ -129,15 +129,15 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-gray-400 text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed mb-12 max-w-lg border-l-2 border-magenta-300 pl-6">
+            <p className="text-gray-400 font-garet text-xs md:text-sm md:text-[15px] leading-relaxed mb-12 max-w-lg border-l-2 border-magenta-300 pl-6">
               Kami menggabungkan pencahayaan inspeksi spektrum luas dan teknik pemolesan multi-tahap untuk hasil yang melampaui standar pabrik.
             </p>
 
             <div className="grid grid-cols-3 gap-3 md:gap-4">
               {stats.map((s, i) => (
                 <div key={i} className="text-center p-4 bg-white/5 rounded-[1.25rem] md:rounded-[1.5rem] border border-white/5">
-                  <div className="text-lg md:text-xl font-black text-white italic">{s.val}</div>
-                  <div className="text-[6px] md:text-[7px] text-gray-500 font-black uppercase tracking-widest">{s.label}</div>
+                  <div className="text-xl md:text-3xl font-horizon text-white mb-2">{s.val}</div>
+                  <div className="text-[7px] md:text-[8px] font-garet text-gray-500 font-black uppercase tracking-widest">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -147,7 +147,7 @@ const About = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-magenta-300 text-white font-black uppercase italic tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(220,38,38,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
+              className="bg-magenta-300 text-white font-garet font-black uppercase tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(255,154,217,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
             >
               Yuk, Ngobrol Dulu!
             </motion.button>
