@@ -71,9 +71,9 @@ const Hero = () => {
           initial={{ opacity: 0, x: 20 }} 
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8 }}
-          className="relative lg:absolute bottom-6 lg:bottom-12 left-6 right-6 lg:left-[-80px] lg:right-auto z-20 
-                     mt-[-40px] lg:mt-0 
-                     p-5 md:p-8 backdrop-blur-3xl bg-white/5 border border-white/10 rounded-[1.5rem] 
+          className="relative lg:absolute bottom-6 lg:bottom-12 left-6 right-6 lg:left-[-80px] lg:right-auto z-20
+                     mt-[-40px] lg:mt-0
+                     p-5 md:p-8 backdrop-blur-3xl bg-white/5 border border-white/10 rounded-[1.5rem]
                      max-w-[260px] sm:max-w-xs lg:max-w-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         >
           <div className="flex justify-between items-start mb-3">

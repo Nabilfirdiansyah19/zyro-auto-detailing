@@ -1,38 +1,71 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Gauge } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo/logo1.webp';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const links = [
-    { name: 'Services', id: 'services' },
-    { name: 'Comparison', id: 'comparison' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Know Us', id: 'about-us-1' },
+    { name: 'Our Stories', id: 'about-us-2' },
+    { name: 'Our Services', id: 'our-service' },
+    { name: 'FAQs', id: 'faq' },
+    { name: 'Find Us', id: 'footer' }
   ];
 
   return (
-    <nav className="fixed w-full z-[100] px-4 md:px-6 py-6">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-[100] px-4 md:px-8 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/60 backdrop-blur-md py-3 shadow-lg' 
+          : 'bg-black py-4' 
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2 text-white group cursor-pointer">
-          <div className="p-2 bg-red-600 rounded-lg group-hover:rotate-90 transition-transform duration-500">
-            <Gauge size={20} className="md:w-6 md:h-6" strokeWidth={3} />
-          </div>
-          <span className="font-black text-xl md:text-2xl tracking-tighter uppercase italic">AUTO<span className="text-red-600">VAULT.</span></span>
+        
+        {/* Logo Section */}
+        <div className="flex items-center group cursor-pointer">
+          <img 
+            src={logo} 
+            alt="Zyro Autodetailing" 
+            className="h-8 md:h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex bg-black/40 backdrop-blur-xl border border-white/10 px-8 py-3 rounded-full gap-8">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a key={link.id} href={`#${link.id}`} className="text-white text-[10px] font-black uppercase tracking-[0.2em] hover:text-red-600 transition-colors">
+            <a 
+              key={link.id} 
+              href={`#${link.id}`} 
+              className="text-white text-sm md:text-base font-medium hover:text-red-500 transition-colors"
+            >
               {link.name}
             </a>
           ))}
         </div>
 
         {/* Mobile Toggle Button */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden w-10 h-10 flex items-center justify-center bg-white text-black rounded-full shadow-lg z-[110]">
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden w-10 h-10 flex items-center justify-center text-white z-[110]"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -53,14 +86,18 @@ const Navbar = () => {
               className="fixed top-0 right-0 h-full w-[75%] bg-[#0A0A0A] border-l border-white/10 z-[105] p-10 flex flex-col justify-center gap-8 md:hidden shadow-2xl"
             >
               {links.map((link) => (
-                <a key={link.id} href={`#${link.id}`} onClick={() => setIsOpen(false)} 
-                  className="text-3xl font-black text-white italic uppercase hover:text-red-600 transition-colors">
+                <a 
+                  key={link.id} 
+                  href={`#${link.id}`} 
+                  onClick={() => setIsOpen(false)} 
+                  className="text-2xl font-bold text-white hover:text-red-600 transition-colors"
+                >
                   {link.name}
                 </a>
               ))}
-              <div className="mt-10 pt-10 border-t border-white/5">
-                <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest leading-loose">
-                  Precision <br /> Auto Aesthetics <br /> Studio
+              <div className="mt-10 pt-10 border-t border-white/10">
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-widest leading-loose">
+                  Zyro <br /> Autodetailing
                 </p>
               </div>
             </motion.div>

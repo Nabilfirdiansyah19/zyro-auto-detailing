@@ -6,7 +6,6 @@ import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Chatbot from './components/Chatbots';
 import Comparison from './components/Comparison';
 
 
@@ -22,7 +21,6 @@ function App() {
       <Testimonials />
       <Contact />
       <Footer />
-      <Chatbot />
     </div>
   );
 }
