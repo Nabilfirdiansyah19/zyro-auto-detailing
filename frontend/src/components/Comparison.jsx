@@ -3,7 +3,7 @@ import { ShieldCheck, ArrowRight } from "lucide-react";
 
 const Comparison = () => {
   return (
-    <section id="comparison" className="py-20 md:py-32 bg-[#050505]">
+    <section id="comparison" className="py-20 md:py-32 bg-[#000000]">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           
@@ -24,12 +24,12 @@ const Comparison = () => {
                   className="absolute bottom-6 left-6 right-6 md:right-auto bg-black/60 backdrop-blur-xl p-6 rounded-[2rem] border border-white/10"
                 >
                    <div className="flex items-center gap-2 mb-2">
-                      <ShieldCheck className="text-red-600" size={14} />
+                      <ShieldCheck className="text-magenta-300" size={14} />
                       <span className="text-gray-500 font-black text-[8px] uppercase tracking-widest">Lab Result</span>
                    </div>
                    <div className="flex items-baseline gap-2">
                      <span className="text-4xl font-black text-white italic">+32%</span>
-                     <span className="text-red-600 font-black text-[10px] uppercase">Gloss</span>
+                     <span className="text-magenta-300 font-black text-[10px] uppercase">Gloss</span>
                    </div>
                 </motion.div>
              </div>
@@ -39,17 +39,17 @@ const Comparison = () => {
           <div className="order-1 lg:order-2">
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}>
               <h2 className="text-5xl md:text-7xl font-black text-white italic uppercase leading-[0.8] mb-8 tracking-tighter">
-                THE <span className="text-red-600">CLARITY</span> <br /> 
+                THE <span className="text-magenta-300">CLARITY</span> <br /> 
                 <span className="text-transparent stroke-text">DIFFERENCE.</span>
               </h2>
-              <p className="text-gray-400 text-xs md:text-sm font-bold uppercase tracking-widest mb-10 max-w-md italic border-l-2 border-red-600 pl-6">
+              <p className="text-gray-400 text-xs md:text-sm font-bold uppercase tracking-widest mb-10 max-w-md italic border-l-2 border-magenta-300 pl-6">
                 Kami mengincar kedalaman warna (depth) dan kejernihan pantulan yang tidak bisa dicapai salon mobil biasa.
               </p>
               
               <div className="grid grid-cols-1 gap-4">
                 {['99.9% Swirl Removal', 'Industrial Self-Healing', 'Chemical Resistance'].map((text, idx) => (
                   <div key={idx} className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
-                    <div className="w-2 h-2 bg-red-600 rotate-45" />
+                    <div className="w-2 h-2 bg-magenta-300 rotate-45" />
                     <span className="text-white font-black uppercase text-[10px] tracking-widest italic">{text}</span>
                   </div>
                 ))}

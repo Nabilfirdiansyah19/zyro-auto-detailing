@@ -44,7 +44,7 @@ const Navbar = () => {
               ZYRO
             </span>
             {/* Red Accent Dot */}
-            <span className="w-2 h-2 md:w-2.5 md:h-2.5 bg-red-600 rounded-sm ml-1 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(220,38,38,0.8)]"></span>
+            <span className="w-2 h-2 md:w-2.5 md:h-2.5 bg-magenta-300 rounded-sm ml-1 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(220,38,38,0.8)]"></span>
           </div>
           <span className="text-[0.6rem] md:text-xs font-semibold text-gray-400 tracking-[0.4em] uppercase -mt-1 group-hover:text-red-500 transition-colors duration-300">
             Autodetailing
@@ -94,7 +94,7 @@ const Navbar = () => {
                   key={link.id} 
                   href={`#${link.id}`} 
                   onClick={() => setIsOpen(false)} 
-                  className="text-2xl font-bold text-white hover:text-red-600 transition-colors"
+                  className="text-2xl font-bold text-white hover:text-magenta-300 transition-colors"
                 >
                   {link.name}
                 </a>

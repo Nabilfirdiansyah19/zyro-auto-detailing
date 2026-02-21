@@ -1,78 +1,156 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Zap, Microscope, Droplets } from "lucide-react";
+import { ShieldCheck, Zap, Microscope, Droplets, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 const About = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const stats = [
     { label: "Cars Perfected", val: "500+" },
     { label: "PPF Installed", val: "12k sqft" },
     { label: "Detailing Hours", val: "8000+" }
   ];
 
+  const services = [
+    {
+      title: "Paint Protection Film",
+      tag: "Free Coating Package",
+      img: "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=800"
+    },
+    {
+      title: "Wrapping",
+      tag: "Free Coating Package",
+      img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800"
+    },
+    {
+      title: "Coating",
+      tag: "Discount Up to 20%",
+      img: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800"
+    },
+    {
+      title: "Body Repair & Repaint",
+      tag: "Free Coating Package",
+      img: "https://images.unsplash.com/photo-1599256621730-535171e28e50?w=800"
+    },
+  ];
+
   return (
-    <section id="about" className="bg-[#050505] py-20 md:py-32 overflow-hidden relative">
+    <section id="about" className="bg-[#000000] py-20 md:py-32 overflow-hidden relative">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
+
+        {/* Header Section (Simetris dengan desain sebelumnya) */}
+        <div className="mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center md:text-left"
+          >
+            <span className="text-magenta-300 font-black tracking-[0.4em] text-[9px] md:text-[10px] uppercase mb-4 block italic">The Science of Shine</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white italic uppercase leading-[0.9] md:leading-[0.85] mb-8 tracking-tighter">
+              EXPERTS TO PROTECT, <br />
+              <span className="text-magenta-300">PERFECT,</span> AND IMPRESS.
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* --- DYNAMIC ACCORDION LAYOUT (Sesuai Gambar) --- */}
+        <div className="flex flex-col md:flex-row gap-3 h-auto md:h-[500px] mb-16">
+          {services.map((item, index) => (
+            <motion.div
+              key={index}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className={`relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-700 ease-in-out h-[300px] sm:h-[400px] md:h-full
+      ${hoveredIndex === index ? 'md:flex-[3]' : 'md:flex-1'} 
+      ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-40 grayscale' : 'opacity-100'}`}
+              layout
+            >
+              {/* Image Background */}
+              <img
+                src={item.img}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                style={{ transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)' }}
+              />
+
+              {/* Overlay Gradient */}
+              <div className={`absolute inset-0 transition-opacity duration-500 ${hoveredIndex === index ? 'bg-black/40' : 'bg-black/60'}`} />
+
+              {/* Content Inside Card */}
+              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start">
+
+                {/* Container untuk Text agar bisa rotasi */}
+                <motion.div
+                  animate={{
+                    rotate: hoveredIndex === index ? 0 : -90,
+                    y: hoveredIndex === index ? 0 : -30 // Geser sedikit ke atas saat vertikal agar tidak mentok bawah
+                  }}
+                  transition={{ duration: 0.5, ease: "circOut" }}
+                  className="origin-left whitespace-nowrap"
+                >
+                  {/* Badge Tag - Hanya muncul/terlihat jelas saat horizontal/hover */}
+                  <motion.div
+                    animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                    className="bg-magenta-300 text-white text-[7px] md:text-[9px] font-black uppercase italic px-2 py-1 md:px-3 md:py-1 rounded-full mb-3 md:mb-4 w-fit"
+                  >
+                    {item.tag}
+                  </motion.div>
+
+                  {/* Title */}
+                  <h3 className={`text-white font-black uppercase italic leading-none tracking-tighter transition-all duration-500
+          ${hoveredIndex === index ? 'text-xl md:text-4xl' : 'text-lg md:text-xl opacity-70'}
+        `}>
+                    {item.title}
+                  </h3>
+                </motion.div>
+
+                {/* View Details Button - Muncul saat hover */}
+                <div className="h-8 md:h-10 overflow-hidden"> {/* Container agar tidak merusak layout saat muncul */}
+                  {hoveredIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="mt-3 md:mt-4 flex items-center gap-2 text-magenta-300 text-[9px] md:text-[10px] font-black uppercase tracking-widest"
+                    >
+                      Explore <ArrowRight size={14} />
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* --- Footer About (Stats & Deskripsi) --- */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-red-600 font-black tracking-[0.5em] text-[10px] uppercase mb-4 block italic">The Science of Shine</span>
-            <h2 className="text-5xl md:text-8xl font-black text-white italic uppercase leading-[0.85] md:leading-[0.8] mb-10 tracking-tighter">
-              WHERE <br /> <span className="text-red-600">ART</span> MEETS <br /> 
-              <span className="text-transparent stroke-text">LABORATORY.</span>
-            </h2>
-            
-            <p className="text-gray-400 text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed mb-12 max-w-lg border-l-2 border-red-600 pl-6">
+            <p className="text-gray-400 text-xs md:text-sm font-bold uppercase tracking-widest leading-relaxed mb-12 max-w-lg border-l-2 border-magenta-300 pl-6">
               Kami menggabungkan pencahayaan inspeksi spektrum luas dan teknik pemolesan multi-tahap untuk hasil yang melampaui standar pabrik.
             </p>
 
-            {/* Stats Grid: Mobile 2 columns, Desktop 3 columns */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
               {stats.map((s, i) => (
-                <div key={i} className="text-center p-5 bg-white/5 rounded-[2rem] border border-white/5 shadow-xl">
-                  <div className="text-xl md:text-2xl font-black text-white italic">{s.val}</div>
-                  <div className="text-[7px] md:text-[8px] text-gray-500 font-black uppercase tracking-widest">{s.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { icon: Microscope, t: "Microscopic Precision", d: "Deteksi goresan level mikron." },
-                { icon: Droplets, t: "Hydrophobic Lab", d: "Teknologi penolak air ekstrem." }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-4 items-start bg-white/5 p-4 rounded-2xl md:bg-transparent md:p-0">
-                  <item.icon className="text-red-600 shrink-0" size={20} />
-                  <div>
-                    <h4 className="text-white font-black text-[10px] uppercase mb-1">{item.t}</h4>
-                    <p className="text-gray-500 text-[9px] font-bold uppercase leading-tight">{item.d}</p>
-                  </div>
+                <div key={i} className="text-center p-4 bg-white/5 rounded-[1.25rem] md:rounded-[1.5rem] border border-white/5">
+                  <div className="text-lg md:text-xl font-black text-white italic">{s.val}</div>
+                  <div className="text-[6px] md:text-[7px] text-gray-500 font-black uppercase tracking-widest">{s.label}</div>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Image Container */}
-          <div className="relative group mt-10 lg:mt-0">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-transparent blur-2xl opacity-10" />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }} 
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="relative z-10 rounded-[2.5rem] md:rounded-[3.rem] overflow-hidden border border-white/10"
+          <div className="flex justify-center md:justify-end">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-magenta-300 text-white font-black uppercase italic tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(220,38,38,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800" 
-                alt="Detailing Lab" 
-                className="w-full transition-all duration-1000 aspect-square md:aspect-auto object-cover" 
-              />
-              <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10">
-                 <div className="flex items-center gap-2 bg-red-600 px-4 py-2 rounded-full text-white text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">
-                   <Zap size={12} fill="white" /> Master Detailer on Duty
-                 </div>
-              </div>
-            </motion.div>
+              Yuk, Ngobrol Dulu!
+            </motion.button>
           </div>
         </div>
       </div>

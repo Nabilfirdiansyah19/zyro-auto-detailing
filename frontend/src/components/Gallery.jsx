@@ -11,7 +11,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section id="gallery" className="py-32 bg-[#050505] overflow-hidden">
+    <section id="gallery" className="py-32 bg-[#000000] overflow-hidden">
       <div className="container mx-auto px-6">
         
         {/* Gallery Title Section */}
@@ -21,8 +21,8 @@ const Gallery = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="flex items-center gap-4 mb-6"
           >
-            <div className="h-[2px] w-12 bg-red-600" />
-            <span className="text-red-600 font-black uppercase text-[10px] tracking-[0.5em]">The Showcase</span>
+            <div className="h-[2px] w-12 bg-magenta-300" />
+            <span className="text-magenta-300 font-black uppercase text-[10px] tracking-[0.5em]">The Showcase</span>
           </motion.div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
@@ -34,7 +34,7 @@ const Gallery = () => {
               VISUAL <br /> <span className="text-transparent stroke-text">ARCHIVE.</span>
             </motion.h2>
             
-            <p className="text-gray-500 font-bold text-[10px] uppercase tracking-[0.3em] max-w-xs lg:text-right border-r-2 border-red-600 pr-6 lg:border-r-0 lg:border-l-2 lg:pl-6">
+            <p className="text-gray-500 font-bold text-[10px] uppercase tracking-[0.3em] max-w-xs lg:text-right border-r-2 border-magenta-300 pr-6 lg:border-r-0 lg:border-l-2 lg:pl-6">
               Dokumentasi hasil kurasi dari setiap mahakarya yang telah kami kerjakan.
             </p>
           </div>
@@ -51,7 +51,7 @@ const Gallery = () => {
               className="relative group overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A0A0A]"
             >
               {/* Image Overlay on Hover */}
-              <div className="absolute inset-0 bg-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+              <div className="absolute inset-0 bg-magenta-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               
               <img 
                 src={url} 
@@ -68,7 +68,7 @@ const Gallery = () => {
 
               {/* Bottom Info */}
               <div className="absolute bottom-0 left-0 right-0 p-8 z-20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black to-transparent">
-                <p className="text-red-600 font-black text-[9px] uppercase tracking-[0.4em] mb-1">Vault 0{i+1}</p>
+                <p className="text-magenta-300 font-black text-[9px] uppercase tracking-[0.4em] mb-1">Vault 0{i+1}</p>
                 <h4 className="text-white font-black italic text-lg uppercase tracking-tighter">Hyper-Gloss Finish</h4>
               </div>
             </motion.div>

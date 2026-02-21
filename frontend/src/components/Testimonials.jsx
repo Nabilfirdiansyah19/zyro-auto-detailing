@@ -12,9 +12,9 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-32 bg-[#050505]">
+    <section className="py-32 bg-[#000000]">
       <div className="container mx-auto px-6 text-center mb-20">
-        <h2 className="text-5xl font-black text-white italic uppercase italic">THE <span className="text-red-600">VERDICT.</span></h2>
+        <h2 className="text-5xl font-black text-white italic uppercase italic">THE <span className="text-magenta-300">VERDICT.</span></h2>
       </div>
 
       <div className="container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -24,22 +24,22 @@ const Testimonials = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-red-600/50 transition-colors group"
+            className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-magenta-300/50 transition-colors group"
           >
             <div className="flex justify-between items-start mb-6">
               <div className="flex gap-1">
-                {[...Array(5)].map((_, s) => <Star key={s} size={10} fill="#FF3E3E" className="text-red-600" />)}
+                {[...Array(5)].map((_, s) => <Star key={s} size={10} fill="#FF3E3E" className="text-magenta-300" />)}
               </div>
-              <ShieldCheck size={16} className="text-gray-700 group-hover:text-red-600" />
+              <ShieldCheck size={16} className="text-gray-700 group-hover:text-magenta-300" />
             </div>
             
             <p className="text-gray-400 italic text-sm font-medium mb-8 leading-relaxed">"{r.text}"</p>
             
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-black text-white italic">{r.name[0]}</div>
+              <div className="w-10 h-10 rounded-full bg-magenta-300 flex items-center justify-center font-black text-white italic">{r.name[0]}</div>
               <div>
                 <h4 className="text-white font-black text-[10px] uppercase tracking-tighter">{r.name}</h4>
-                <p className="text-red-600 text-[8px] font-black uppercase tracking-widest">{r.car}</p>
+                <p className="text-magenta-300 text-[8px] font-black uppercase tracking-widest">{r.car}</p>
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 flex justify-between">

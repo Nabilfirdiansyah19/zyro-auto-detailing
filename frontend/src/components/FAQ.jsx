@@ -53,7 +53,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                     {question}
                 </h3>
                 <button
-                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-red-600 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'bg-white/5 text-white/50 group-hover:bg-white/10 group-hover:text-white'}`}
+                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-magenta-300 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'bg-white/5 text-white/50 group-hover:bg-white/10 group-hover:text-white'}`}
                 >
                     {isOpen ? <Minus size={14} /> : <Plus size={14} />}
                 </button>
@@ -86,18 +86,18 @@ const FAQ = () => {
     const rightColumn = faqData.filter((_, index) => index % 2 !== 0);
 
     return (
-        <section id="faq" className="py-20 px-6 md:px-16 bg-[#050505] relative overflow-hidden">
+        <section id="faq" className="py-20 px-6 md:px-16 bg-[#000000] relative overflow-hidden">
             {/* Decorative Glows */}
-            <div className="absolute top-0 left-1/4 w-72 h-72 bg-red-600/5 blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-red-600/5 blur-[100px] pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-72 h-72 bg-magenta-300/5 blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-magenta-300/5 blur-[100px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-12">
-                    <span className="text-red-600 font-black tracking-[0.5em] text-[10px] uppercase mb-4 block italic">
+                    <span className="text-magenta-300 font-black tracking-[0.5em] text-[10px] uppercase mb-4 block italic">
                         Customer Intelligence
                     </span>
                     <h2 className="text-2xl md:text-4xl font-black text-white uppercase italic tracking-tighter font-garet">
-                        Frequently Asked <span className="text-red-600">Questions.</span>
+                        Frequently Asked <span className="text-magenta-300">Questions.</span>
                     </h2>
                 </div>
 
