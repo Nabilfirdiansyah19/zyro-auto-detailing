@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronRight, Sparkles, ShieldCheck, Star, Award } from 'lucide-react';
 
+import BgImage from '../assets/gallery/bg.jpeg';
 // Import logo sesuai struktur folder src kamu
 import LogoImg from '../assets/logo/logo1.webp';
 
@@ -31,7 +32,7 @@ const Hero = () => {
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.6 }}
           transition={{ duration: 1.5 }}
-          src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1920"
+          src={BgImage}
           alt="Auto Detailing Background"
           className="w-full h-full object-cover grayscale object-center"
         />

@@ -1,16 +1,25 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { Instagram, ExternalLink, Play } from "lucide-react";
+import { Instagram, Play } from "lucide-react";
 
-// 1. Import gambar secara manual dari folder assets
+// 1. Import gambar & video secara manual dari folder assets
 import img1 from "../assets/gallery/post-1.webp";
 import img2 from "../assets/gallery/post-2.webp";
 import img3 from "../assets/gallery/post-3.webp";
+import vid1 from "../assets/gallery/video/1.mp4";
+import vid2 from "../assets/gallery/video/2.mp4";
+import vid3 from "../assets/gallery/video/3.mp4";
+
+// Sponsor logo
+import spo1 from "../assets/logo/logo-s/1.jpg";
+import spo2 from "../assets/logo/logo-s/2.png";
+import spo3 from "../assets/logo/logo-s/3.jpg";
+import spo4 from "../assets/logo/logo-s/4.png";
 
 const About2 = () => {
-  
   const instagramFeeds = [
     {
-      thumbnail: img1, // Menggunakan variabel import
+      thumbnail: img1,
       postUrl: "https://www.instagram.com/reel/DS7m4gjE2XR/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
       type: "Reels",
       label: "@zyro.autodetailing"
@@ -26,15 +35,32 @@ const About2 = () => {
       postUrl: "https://www.instagram.com/p/DS_wrP8E8pn/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
       type: "Post",
       label: "@zyro.autodetailing"
+    },
+    {
+      thumbnail: vid1, 
+      postUrl: "https://www.instagram.com/reel/DU7L3oPk-yi/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      type: "Reels",
+      label: "@zyro.autodetailing"
+    },
+    {
+      thumbnail: vid2, 
+      postUrl: "https://www.instagram.com/reel/DT10aL_E5wj/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      type: "Reels",
+      label: "@zyro.autodetailing"
+    },
+    {
+      thumbnail: vid3,
+      postUrl: "https://www.instagram.com/reel/DTO3ZqdEzA1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      type: "Reels",
+      label: "@zyro.autodetailing"
     }
   ];
 
-  const sponsors = [
-    "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png",
-    "https://upload.wikimedia.org/wikipedia/commons/b/bd/Puma_Logo_2022.svg",
-  ];
+  const sponsors = [spo1, spo2, spo3, spo4];
+
+  const isVideo = (filePath) => {
+    return filePath && typeof filePath === 'string' && filePath.match(/\.(mp4|webm|ogg)/i);
+  };
 
   return (
     <section id="about-us-2" className="py-32 bg-[#000000] overflow-hidden">
@@ -76,22 +102,27 @@ const About2 = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="group relative aspect-square overflow-hidden rounded-[1rem] bg-zinc-900 border border-white/10"
+              className="group relative aspect-square overflow-hidden rounded-[1rem] bg-zinc-900 border border-white/10 block"
             >
-              {/* Gambar Lokal */}
-              <img 
-                src={item.thumbnail} 
-                alt={item.label}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              {isVideo(item.thumbnail) ? (
+                <video 
+                  src={item.thumbnail} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  autoPlay loop muted playsInline
+                />
+              ) : (
+                <img 
+                  src={item.thumbnail} 
+                  alt={item.label}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              )}
 
-              {/* Instagram Hover Overlay */}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center backdrop-blur-[2px]">
                 <Instagram className="text-white mb-3" size={30} />
                 <span className="text-white font-bold text-[10px] uppercase tracking-[0.2em]">View Post</span>
               </div>
 
-              {/* Type Badge */}
               <div className="absolute top-4 left-4 z-20">
                 <div className="px-3 py-1.5 backdrop-blur-xl bg-black/40 border border-white/20 rounded-lg flex items-center gap-2">
                    {item.type === "Reels" ? <Play size={10} className="text-magenta-300 fill-magenta-300" /> : <div className="w-1.5 h-1.5 rounded-full bg-magenta-300" />}
@@ -99,24 +130,36 @@ const About2 = () => {
                 </div>
               </div>
 
-              {/* Label Tag */}
-              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                 <p className="text-white font-medium text-[12px] italic">{item.label}</p>
               </div>
             </motion.a>
           ))}
         </div>
 
-        {/* Sponsored By */}
+        {/* --- SPONSORED BY SECTION --- */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-24 pt-12 border-t border-white/10"
+          className="mt-32 flex flex-col items-center"
         >
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-40">
+          {/* Label Header */}
+          <div className="flex items-center gap-4 mb-12">
+             <div className="h-[1px] w-12 bg-magenta-300" />
+             <span className="text-magenta-300 font-black uppercase text-[10px] tracking-[0.4em]">Official Partners</span>
+             <div className="h-[1px] w-12 bg-magenta-300" />
+          </div>
+
+          {/* Logo Grid */}
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 transition-opacity duration-500">
             {sponsors.map((logo, index) => (
-              <img key={index} src={logo} alt="Sponsor" className="h-8 object-contain grayscale invert" />
+              <img 
+                key={index} 
+                src={logo} 
+                alt="Sponsor" 
+                className="h-12 md:h-16 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer"
+              />
             ))}
           </div>
         </motion.div>
