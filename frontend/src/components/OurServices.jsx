@@ -40,7 +40,7 @@ const OurServices = () => {
   };
 
   return (
-    <section id="our-services" className="py-24 bg-[#000000] min-h-screen overflow-hidden">
+    <section id="our-service" className="py-24 bg-[#000000] min-h-screen overflow-hidden">
       <div className="container mx-auto px-6">
         
         {/* Header Section */}
@@ -69,7 +69,7 @@ const OurServices = () => {
               {activeTab === item.id && (
                 <motion.div 
                   layoutId="activeTab"
-                  className="absolute -bottom-[26px] left-0 right-0 h-1 bg-magenta-300 shadow-[0_0_15px_#FF9AD9]"
+                  className="absolute -bottom-[10px] left-0 right-0 h-1 bg-magenta-300 shadow-[0_0_15px_#FF9AD9]"
                 />
               )}
             </button>

@@ -52,7 +52,7 @@ const handleExplore = (serviceTitle) => {
   window.dispatchEvent(event);
 
   // 2. Scroll ke section OurServices
-  const section = document.getElementById("our-services");
+  const section = document.getElementById("our-service");
   if (section) {
     section.scrollIntoView({ behavior: "smooth" });
   }
