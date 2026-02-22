@@ -1,43 +1,39 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Zap, Microscope, Droplets, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+
+import int from "../assets/gallery/int.jpg";
+import ext from "../assets/gallery/ext.jpg";
+import rep from "../assets/gallery/repair.jpeg";
+import coa from "../assets/gallery/coating.jpg";
 
 const About = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const stats = [
-    { label: "Cars Perfected", val: "500+" },
-    { label: "PPF Installed", val: "12k+" },
-    { label: "Detailing Hours", val: "8000+" }
-  ];
-
   const services = [
     {
       title: "Coating Package",
-      tag: "Diskon Up To 30% / Free Anti Karat",
-      img: "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=800"
+      tag: "Diskon Up To 30%",
+      img: coa
     },
     {
       title: "Interior Series",
-      tag: "Jok Permanen + Door Trim + Knoob Trim",
-      img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800"
+      tag: "Jok & Door Trim",
+      img: int
     },
     {
       title: "Exterior Series",
       tag: "Window Film",
-      img: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800"
+      img: ext
     },
     {
       title: "Body Repair & Repaint",
       tag: "With Coating Promo",
-      img: "https://images.unsplash.com/photo-1599256621730-535171e28e50?w=800"
+      img: rep
     },
   ];
 
-  // Di dalam About.jsx
-
   const handleExplore = (serviceTitle) => {
-    // Mapping Judul di About ke ID Tab di OurServices
     const tabMapping = {
       "Coating Package": "coating",
       "Interior Series": "interior",
@@ -46,12 +42,9 @@ const About = () => {
     };
 
     const targetTab = tabMapping[serviceTitle];
-
-    // 1. Kirim sinyal ke window agar OurServices.jsx bisa menangkapnya
     const event = new CustomEvent("changeServiceTab", { detail: targetTab });
     window.dispatchEvent(event);
 
-    // 2. Scroll ke section OurServices
     const section = document.getElementById("our-service");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -62,7 +55,7 @@ const About = () => {
     <section id="about-us-1" className="bg-[#000000] py-20 md:py-32 overflow-hidden relative">
       <div className="container mx-auto px-6">
 
-        {/* Header Section (Simetris dengan desain sebelumnya) */}
+        {/* Header Section */}
         <div className="mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,16 +71,17 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* --- DYNAMIC ACCORDION LAYOUT (Sesuai Gambar) --- */}
-        <div className="flex flex-col md:flex-row gap-3 h-auto md:h-[500px] mb-16">
+        {/* --- DYNAMIC ACCORDION LAYOUT --- */}
+        <div className="flex flex-col md:flex-row gap-3 h-[500px] sm:h-[600px] md:h-[500px] mb-16">
           {services.map((item, index) => (
             <motion.div
+              onClick={() => handleExplore(item.title)}
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className={`relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-700 ease-in-out h-[300px] sm:h-[400px] md:h-full
-      ${hoveredIndex === index ? 'md:flex-[3]' : 'md:flex-1'} 
-      ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-40 grayscale' : 'opacity-100'}`}
+              className={`relative overflow-hidden rounded-[1.5rem] md:rounded-[2rem] cursor-pointer transition-all duration-700 ease-in-out w-full md:h-full
+                ${hoveredIndex === index ? 'flex-[3] md:flex-[3]' : 'flex-[1] md:flex-1'} 
+                ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-40 grayscale' : 'opacity-100'}`}
               layout
             >
               {/* Image Background */}
@@ -99,46 +93,54 @@ const About = () => {
               />
 
               {/* Overlay Gradient */}
-              <div className={`absolute inset-0 transition-opacity duration-500 ${hoveredIndex === index ? 'bg-black/40' : 'bg-black/60'}`} />
+              <div className={`absolute inset-0 transition-opacity duration-500 ${hoveredIndex === index ? 'bg-black/40' : 'bg-black/60 md:bg-black/70'}`} />
 
               {/* Content Inside Card */}
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-start">
+              {/* PERBAIKAN: Padding diperkecil di mobile, justify-end dipertahankan */}
+              <div className="absolute inset-0 p-4 sm:p-6 md:p-8 flex flex-col justify-end items-start">
 
-                {/* Container untuk Text agar bisa rotasi */}
+                {/* Container Text */}
+                {/* PERBAIKAN: Menghapus whitespace-nowrap agar teks bisa wrap ke bawah jika kepanjangan di mobile */}
                 <motion.div
                   animate={{
-                    rotate: hoveredIndex === index ? 0 : -90,
-                    y: hoveredIndex === index ? 0 : -20 // Sesuaikan nilai offset y agar posisinya pas di tengah saat terlipat
+                    // Pada mobile (lebar penuh), jangan di-rotasi. Rotasi hanya di desktop (saat menyempit ke samping)
+                    rotate: window.innerWidth < 768 ? 0 : (hoveredIndex === index ? 0 : -90),
+                    y: hoveredIndex === index ? 0 : (window.innerWidth < 768 ? 0 : -20)
                   }}
                   transition={{ duration: 0.5, ease: "circOut" }}
-                  className="origin-left whitespace-nowrap"
+                  className="origin-left w-full"
                 >
-                  {/* Badge Tag - Hanya muncul/terlihat jelas saat horizontal/hover */}
+                  {/* Badge Tag */}
                   <motion.div
-                    animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                    className="bg-magenta-300 text-white font-garet text-[8px] md:text-[10px] font-black uppercase px-3 py-1 md:py-1.5 rounded-full mb-3 md:mb-4 w-fit shadow-md tracking-wider"
+                    animate={{ opacity: hoveredIndex === index ? 1 : (window.innerWidth < 768 ? 1 : 0) }}
+                    // PERBAIKAN: Teks tag diperkecil, padding disesuaikan
+                    className="bg-magenta-300 text-white font-garet text-[7px] md:text-[9px] lg:text-[10px] font-black uppercase px-2 py-1 md:px-3 md:py-1.5 rounded-full mb-2 md:mb-4 w-fit shadow-md tracking-widest line-clamp-1"
                   >
                     {item.tag}
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className={`text-white font-horizon uppercase leading-none transition-all duration-500
-          ${hoveredIndex === index ? 'text-xl md:text-2xl' : 'text-[15px] md:text-lg opacity-80'}
-        `}>
+                  {/* PERBAIKAN: Ukuran font diperkecil signifikan pada mode tertutup agar muat */}
+                  <h3 className={`text-white font-horizon uppercase leading-tight md:leading-none transition-all duration-500 max-w-full
+                    ${hoveredIndex === index 
+                      ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl' 
+                      : 'text-sm sm:text-base md:text-[15px] lg:text-lg opacity-80 md:opacity-50'}
+                  `}>
                     {item.title}
                   </h3>
                 </motion.div>
 
-                {/* View Details Button - Muncul saat hover */}
-                <div className="h-8 md:h-10 overflow-hidden"> {/* Container agar tidak merusak layout saat muncul */}
-                  {hoveredIndex === index && (
+                {/* View Details Button */}
+                <div className="h-6 md:h-10 overflow-hidden"> 
+                  {/* Di mobile selalu munculin (atau atur sesuai keinginan), di desktop muncul saat hover */}
+                  {(hoveredIndex === index || window.innerWidth < 768) && (
                     <motion.div
                       onClick={() => handleExplore(item.title)}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="mt-3 md:mt-4 flex items-center gap-2 text-magenta-300 text-[9px] md:text-[10px] font-black uppercase tracking-widest cursor-pointer"
+                      className="mt-2 md:mt-4 flex items-center gap-2 text-magenta-300 text-[8px] md:text-[10px] font-black uppercase tracking-widest cursor-pointer"
                     >
-                      Explore <ArrowRight size={14} />
+                      Explore <ArrowRight size={12} className="md:w-[14px] md:h-[14px]" />
                     </motion.div>
                   )}
                 </div>
@@ -147,39 +149,18 @@ const About = () => {
           ))}
         </div>
 
-        {/* --- Footer About (Stats & Deskripsi) --- */}
-        <div className="grid lg:grid-cols-1 gap-12 items-center">
-          {/* <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+        {/* --- Footer About --- */}
+        <div className="flex justify-center mt-10">
+          <motion.a
+            href="https://wa.me/6287884742550"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-magenta-300 text-white font-garet font-black uppercase tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(255,154,217,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
           >
-            <p className="text-gray-400 font-garet text-xs md:text-sm md:text-[15px] leading-relaxed mb-12 max-w-lg border-l-2 border-magenta-300 pl-6">
-              Kami menggabungkan pencahayaan inspeksi spektrum luas dan teknik pemolesan multi-tahap untuk hasil yang melampaui standar pabrik.
-            </p>
-
-            <div className="grid grid-cols-3 gap-3 md:gap-4">
-              {stats.map((s, i) => (
-                <div key={i} className="text-center p-4 bg-white/5 rounded-[1.25rem] md:rounded-[1.5rem] border border-white/5">
-                  <div className="text-xl md:text-3xl font-horizon text-white mb-2">{s.val}</div>
-                  <div className="text-[7px] md:text-[8px] font-garet text-gray-500 font-black uppercase tracking-widest">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div> */}
-
-          <div className="flex justify-center lg:justify-end mt-10">
-            <motion.a
-              href= "https://wa.me/6287884742550"
-              target="_blank" // Membuka di tab baru
-              rel="noopener noreferrer" // Keamanan tambahan
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-magenta-300 text-white font-garet font-black uppercase tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(255,154,217,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
-            >
-              Yuk, Ngobrol Dulu!
-            </motion.a>
-          </div>
+            Yuk, Ngobrol Dulu!
+          </motion.a>
         </div>
       </div>
       <style>{`.stroke-text { -webkit-text-stroke: 1px rgba(255,255,255,0.2); }`}</style>

@@ -49,7 +49,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                 className="flex justify-between items-start cursor-pointer group"
                 onClick={onClick}
             >
-                <h3 className="text-sm md:text-base font-bold text-white leading-tight pr-6 font-garet italic tracking-tight">
+                <h3 className="text-sm md:text-base font-bold text-white leading-tight pr-6 font-garet tracking-tight">
                     {question}
                 </h3>
                 <button
@@ -93,10 +93,10 @@ const FAQ = () => {
 
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-12">
-                    <span className="text-magenta-300 font-black tracking-[0.5em] text-[10px] uppercase mb-4 block italic">
+                    <span className="font-have-heart text-magenta-300 text-5xl">
                         Customer Intelligence
                     </span>
-                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase italic tracking-tighter font-garet">
+                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter font-garet">
                         Frequently Asked <span className="text-magenta-300">Questions.</span>
                     </h2>
                 </div>

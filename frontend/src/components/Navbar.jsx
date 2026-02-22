@@ -57,7 +57,7 @@ const Navbar = () => {
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="text-white/80 text-sm font-bold tracking-wider hover:text-fuchsia-500 transition-all uppercase"
+              className="text-white/80 text-sm font-bold tracking-wider hover:text-magenta-300 transition-all uppercase"
             >
               {link.name}
             </a>
@@ -106,7 +106,7 @@ const Navbar = () => {
                     key={link.id}
                     href={`#${link.id}`}
                     onClick={() => setIsOpen(false)}
-                    className="text-4xl font-black text-white hover:text-fuchsia-600 transition-colors uppercase italic tracking-tighter"
+                    className="text-4xl font-black text-white hover:text-magenta-300 transition-colors uppercase italic tracking-tighter"
                   >
                     {link.name}
                   </motion.a>
