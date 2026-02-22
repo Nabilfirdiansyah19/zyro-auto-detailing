@@ -36,27 +36,27 @@ const About = () => {
 
   // Di dalam About.jsx
 
-const handleExplore = (serviceTitle) => {
-  // Mapping Judul di About ke ID Tab di OurServices
-  const tabMapping = {
-    "Coating Package": "coating",
-    "Interior Series": "interior",
-    "Exterior Series": "exterior",
-    "Body Repair & Repaint": "bodywork"
+  const handleExplore = (serviceTitle) => {
+    // Mapping Judul di About ke ID Tab di OurServices
+    const tabMapping = {
+      "Coating Package": "coating",
+      "Interior Series": "interior",
+      "Exterior Series": "exterior",
+      "Body Repair & Repaint": "bodywork"
+    };
+
+    const targetTab = tabMapping[serviceTitle];
+
+    // 1. Kirim sinyal ke window agar OurServices.jsx bisa menangkapnya
+    const event = new CustomEvent("changeServiceTab", { detail: targetTab });
+    window.dispatchEvent(event);
+
+    // 2. Scroll ke section OurServices
+    const section = document.getElementById("our-service");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
-
-  const targetTab = tabMapping[serviceTitle];
-
-  // 1. Kirim sinyal ke window agar OurServices.jsx bisa menangkapnya
-  const event = new CustomEvent("changeServiceTab", { detail: targetTab });
-  window.dispatchEvent(event);
-
-  // 2. Scroll ke section OurServices
-  const section = document.getElementById("our-service");
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-};
 
   return (
     <section id="about-us-1" className="bg-[#000000] py-20 md:py-32 overflow-hidden relative">
@@ -133,13 +133,13 @@ const handleExplore = (serviceTitle) => {
                 <div className="h-8 md:h-10 overflow-hidden"> {/* Container agar tidak merusak layout saat muncul */}
                   {hoveredIndex === index && (
                     <motion.div
-                    onClick={() => handleExplore(item.title)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="mt-3 md:mt-4 flex items-center gap-2 text-magenta-300 text-[9px] md:text-[10px] font-black uppercase tracking-widest cursor-pointer"
-                  >
-                    Explore <ArrowRight size={14} />
-                  </motion.div>
+                      onClick={() => handleExplore(item.title)}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="mt-3 md:mt-4 flex items-center gap-2 text-magenta-300 text-[9px] md:text-[10px] font-black uppercase tracking-widest cursor-pointer"
+                    >
+                      Explore <ArrowRight size={14} />
+                    </motion.div>
                   )}
                 </div>
               </div>
@@ -168,14 +168,17 @@ const handleExplore = (serviceTitle) => {
             </div>
           </motion.div> */}
 
-          <div className="flex justify-center md:justify-center">
-            <motion.button
+          <div className="flex justify-center lg:justify-end mt-10">
+            <motion.a
+              href= "https://wa.me/6287884742550"
+              target="_blank" // Membuka di tab baru
+              rel="noopener noreferrer" // Keamanan tambahan
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-magenta-300 text-white font-garet font-black uppercase tracking-[.2em] px-8 md:px-10 py-4 md:py-5 rounded-full text-[10px] md:text-xs shadow-[0_20px_40px_rgba(255,154,217,0.3)] hover:bg-white hover:text-magenta-300 transition-all duration-300"
             >
               Yuk, Ngobrol Dulu!
-            </motion.button>
+            </motion.a>
           </div>
         </div>
       </div>
