@@ -47,8 +47,7 @@ const About2 = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="flex items-center gap-4 mb-6"
           >
-            <div className="h-[2px] w-12 bg-magenta-300" />
-            <span className="text-magenta-300 font-black uppercase text-[10px] tracking-[0.5em]">Our Gallery</span>
+            <span className="text-magenta-300 font-signature uppercase text-2xl tracking-[0.5em]">Our Gallery</span>
           </motion.div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">

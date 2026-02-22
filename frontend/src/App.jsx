@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
+import GiftCard from './components/GiftCard';
 import About2 from './components/About2';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -17,8 +18,9 @@ function App() {
       <About />
       <About2 />
       <Testimonials />
-      <Services />
-      <Comparison />
+      {/* <Services /> */}
+      <GiftCard />
+      {/* <Comparison /> */}
       <OurServices />
       <FAQ />
       <Footer />
