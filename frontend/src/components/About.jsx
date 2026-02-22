@@ -123,7 +123,7 @@ const About = () => {
         </div>
 
         {/* --- Footer About (Stats & Deskripsi) --- */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-1 gap-12 items-center">
           {/* <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -143,7 +143,7 @@ const About = () => {
             </div>
           </motion.div> */}
 
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center md:justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
