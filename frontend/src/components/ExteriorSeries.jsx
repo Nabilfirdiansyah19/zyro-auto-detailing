@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, ThermometerSnowflake, CheckCircle2, Camera } from 'lucide-react';
-import Riben from '../assets/logo/Riben.webp';
+import Riben from '../assets/logo/riben.webp';
 import ProMaster from '../assets/logo/ProMaster.webp';
 import CPF1 from '../assets/logo/Cpf1.webp';
 import Llumar from '../assets/logo/Llumar.webp';
