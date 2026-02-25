@@ -7,6 +7,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import OurServices from './components/OurServices';
+import UltimateServiceTransition from './components/UltimateServiceTransition';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <About2 />
       <Testimonials />
       <GiftCard />
+      <UltimateServiceTransition />
       <OurServices />
       <FAQ />
       <Footer />
